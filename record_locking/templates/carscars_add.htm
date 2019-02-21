@@ -1,0 +1,204 @@
+<html {$html_attrs}>
+<head><title>Carscars</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+<!--[if IE]>
+<link REL="stylesheet" href="include/styleIE.css" type="text/css">
+<![endif]-->
+<style>
+#center_block{$id} {width:500px;margin:0 auto;}
+#contents_block{$id} {text-align:center;}
+#header_block{$id} {white-space:nowrap;height:31px;padding:5px;text-align:center;}
+#footer_block{$id} {height:15px;}
+#fields_block{$id} {width:100%}
+#buttons_block{$id} {padding-bottom:5px;white-space:nowrap;text-align:center;}
+#required_block{$id} {text-align:left;padding:5px}
+#message_block{$id} {padding:5px 5px;text-align:center;}
+</style>
+</head>
+<body>
+{BEGIN body}
+{$header}
+<TABLE align=center id="center_block{$id}" cellpadding=0 cellspacing=0 border=0><tr><td>
+{BEGIN flybody}
+<b class="xtop"><b class="xb1b"></b><b class="xb2b"></b><b class="xb3b"></b><b class="xb4b"></b></b>
+<div id="header_block{$id}" class="upeditmenu">
+Carscars, Add new record
+</div>
+<div class="main_table_border2" style="border: 1px solid #516C81;">
+<div class="main_table_border">
+<TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0 width="480">
+{BEGIN message_block}
+<div id="message_block{$id}" class=downedit>{$message}</div>
+{END message_block}
+
+{BEGIN category_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN category_label}Category{END category_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$category_editcontrol}
+  </td></tr>
+{END category_fieldblock}  
+{BEGIN color_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN color_label}Color{END color_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$color_editcontrol}
+  </td></tr>
+{END color_fieldblock}  
+{BEGIN Date_Listed_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN Date_Listed_label}Date Listed{END Date_Listed_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Date_Listed_editcontrol}
+  </td></tr>
+{END Date_Listed_fieldblock}  
+{BEGIN descr_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN descr_label}Descr{END descr_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$descr_editcontrol}
+  </td></tr>
+{END descr_fieldblock}  
+{BEGIN EPACity_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN EPACity_label}EPACity{END EPACity_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$EPACity_editcontrol}
+  </td></tr>
+{END EPACity_fieldblock}  
+{BEGIN EPAHighway_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN EPAHighway_label}EPAHighway{END EPAHighway_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$EPAHighway_editcontrol}
+  </td></tr>
+{END EPAHighway_fieldblock}  
+{BEGIN features_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN features_label}Features{END features_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$features_editcontrol}
+  </td></tr>
+{END features_fieldblock}  
+{BEGIN Horsepower_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN Horsepower_label}Horsepower{END Horsepower_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Horsepower_editcontrol}
+  </td></tr>
+{END Horsepower_fieldblock}  
+{BEGIN Make_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN Make_label}Make{END Make_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Make_editcontrol}
+  </td></tr>
+{END Make_fieldblock}  
+{BEGIN Model_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN Model_label}Model{END Model_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Model_editcontrol}
+  </td></tr>
+{END Model_fieldblock}  
+{BEGIN Phone___fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN Phone___label}Phone #{END Phone___label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Phone___editcontrol}
+  </td></tr>
+{END Phone___fieldblock}  
+{BEGIN Picture_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN Picture_label}Picture{END Picture_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Picture_editcontrol}
+  </td></tr>
+{END Picture_fieldblock}  
+{BEGIN Price_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN Price_label}Price{END Price_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Price_editcontrol}
+  </td></tr>
+{END Price_fieldblock}  
+{BEGIN UserID_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN UserID_label}User ID{END UserID_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$UserID_editcontrol}
+  </td></tr>
+{END UserID_fieldblock}  
+{BEGIN YearOfMake_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN YearOfMake_label}Year Of Make{END YearOfMake_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$YearOfMake_editcontrol}
+  </td></tr>
+{END YearOfMake_fieldblock}  
+{BEGIN zipcode_fieldblock}
+  <tr style="padding:3px">
+    <td class=editshade_b width=150 style="padding-left:15px;">
+	{BEGIN zipcode_label}Zipcode{END zipcode_label}
+	</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$zipcode_editcontrol}
+  </td></tr>
+{END zipcode_fieldblock}  
+</table>
+</div>
+<div class="downedit" id="buttons_block{$id}">
+<div id="required_block{$id}" ><img alt="bullet" src="images/icon_required.gif"> - Required field</div>
+{BEGIN save_button}
+<span class=buttonborder><input class=button type=submit value="Save" name=submit1 {$savebutton_attrs}></span>
+{END save_button}
+{BEGIN reset_button}
+<span class=buttonborder><input class=button type=reset value="Reset" {$resetbutton_attrs}></span>
+{END reset_button}
+{BEGIN cancel_button}
+<span class=buttonborder><input class=button type=button value="Cancel" {$cancelbutton_attrs}></span>
+{END cancel_button}
+{BEGIN back_button}
+<span class=buttonborder><input class=button type=button value="Back to list" {$backbutton_attrs}></span>
+{END back_button}
+</div>
+
+</div>
+<b class="xbottom"><b class="xb4b"></b><b class="xb3b"></b><b class="xb2b"></b><b class="xb1b"></b></b>
+{END flybody}
+</td></tr>
+</table>
+{END body}
+{$footer}
+</body>
+</html>

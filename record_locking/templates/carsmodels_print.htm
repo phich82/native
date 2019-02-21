@@ -1,0 +1,104 @@
+<html {$html_attrs}>
+<head>
+<title>Carsmodels</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+<!--[if IE]>
+<link REL="stylesheet" href="include/styleIE.css" type="text/css">
+<![endif]-->
+<style>
+.grid_block {  
+margin-top:5px;
+border-collapse: collapse;
+align:center;
+width:95%;
+border:none;
+} 
+.grid_block td { 
+ padding: 5px; 
+ margin: 0px; 
+ border: solid black 1px;
+}
+.grid_block .gridspacing {width:20px;border-top-color:white; border-bottom-color:white;background-color:white}
+@media print 
+{
+	a.pdf {display:none}
+}
+.printpage {page-break-after:always}
+#selpage{margin-left:30px;}
+</style> 
+</head>
+<body style="background-color:white">
+{BEGIN body}
+{$header}
+{BEGIN page}
+
+<h1>Carsmodels</h1>
+{BEGIN page_number}
+<div id='selpage'>Page {$pageno} of {$maxpages} </div>
+{END page_number}
+
+{BEGIN grid_block}
+
+<table align="center" cellpadding=5 class="grid_block">
+{BEGIN grid_header}
+<tr>
+{BEGIN record_header}
+{BEGIN id_fieldheadercolumn}
+	<td>
+{BEGIN id_fieldheader}
+	<b>Id</b>
+{END id_fieldheader}
+	</td>
+{END id_fieldheadercolumn}
+{BEGIN make_fieldheadercolumn}
+	<td>
+{BEGIN make_fieldheader}
+	<b>Make</b>
+{END make_fieldheader}
+	</td>
+{END make_fieldheadercolumn}
+{BEGIN model_fieldheadercolumn}
+	<td>
+{BEGIN model_fieldheader}
+	<b>Model</b>
+{END model_fieldheader}
+	</td>
+{END model_fieldheadercolumn}
+{BEGIN endrecordheader_block}
+	<td class="gridspacing">&nbsp;</td>
+{END endrecordheader_block}
+{END record_header}
+</tr>
+{END grid_header}
+{BEGIN grid_row}
+<tr valign=top {$rowstyle} {$rowattrs}>
+{BEGIN grid_record}
+{BEGIN id_fieldcolumn}
+<td {$id_style}>
+{$id_value}
+</td>
+{END id_fieldcolumn}
+{BEGIN make_fieldcolumn}
+<td {$make_style}>
+{$make_value}
+</td>
+{END make_fieldcolumn}
+{BEGIN model_fieldcolumn}
+<td {$model_style}>
+{$model_value}
+</td>
+{END model_fieldcolumn}
+{BEGIN endrecord_block}
+<td class="gridspacing">&nbsp;</td>
+{END endrecord_block}
+{END grid_record}
+</tr>
+{END grid_row}
+<!-- totals row -->
+</table>
+{END grid_block}
+{END page}
+{$footer}
+{END body}
+</body>
+</html>

@@ -1,0 +1,34 @@
+<style>
+<!--
+#center_block{$id}{
+	padding: 5px;
+}
+#searchPanelHeader{$id}{
+	padding: 5px 0px 5px 5px;
+}
+-->
+</style>
+
+<!-- search panel and window header -->
+<div class="blackshade2" id="center_block{$id}">
+	##message SEARCH_FOR##:
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img id="showSrchWin{$id}" {$showHideSearchWin_attrs}/>
+	&nbsp;		
+	<img id="showOptPanel{$id}" {$showHideSearchPanel_attrs}/>
+</div>
+<div id="searchform{$id}">
+	<div class="blackshade" id="searchPanelHeader{$id}">
+		{BEGIN searchform_text}
+			<input type=text {$searchfor_attrs} {$searchForSize10}>
+		{END searchform_text}
+		&nbsp;
+		{BEGIN searchform_search}
+			<span class="buttonborder"><input class="button" type="button" {$searchbutton_attrs} /></span>
+		{END searchform_search}
+		&nbsp;		
+		{BEGIN searchform_showall}
+			<span class=buttonborder><input type=button class="button" value="##message SHOW_ALL##" {$showallbutton_attrs}></span>
+		{END searchform_showall}
+	</div>
+</div> 

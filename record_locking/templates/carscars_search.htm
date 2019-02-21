@@ -1,0 +1,298 @@
+<html {$html_attrs}>
+<head>
+<title>Carscars: Advanced search page</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+<!--[if IE]>
+<link REL="stylesheet" href="include/styleIE.css" type="text/css">
+<![endif]-->
+<style>
+#center_block{$id} {margin:0 auto;}
+#contents_block{$id} {text-align:center;width:100%}
+#header_block{$id} {white-space:nowrap;height:31px;padding-top:5px;}
+#main_block{$id} {padding:10px 0;width:100%}
+#inmain_block{$id} {margin:0 10px}
+#buttons_block{$id} {width:100%;padding:10px 0;}
+#buttons_block{$id} > * {margin:0 2px}
+#conditions_block{$id} {padding:5px;}
+</style>
+<!--[if IE]>
+<style>
+#main_block{$id} {padding:10px 10;}
+#inmain_block{$id} {margin:0 0px}
+</style>
+<![endif]-->
+</head>
+<body bgcolor=white>
+{BEGIN body}
+{$header}
+{BEGIN contents_block}
+<table align=center id="center_block{$id}"><tr><td id="contents_block{$id}">
+	
+<b class="xtop"><b class="xb1b"></b><b class="xb2b"></b><b class="xb3b"></b><b class="xb4b"></b></b>
+<div id="header_block{$id}" class="upeditmenu">Carscars - Advanced search</div>
+
+<div class="main_table_border2">
+<div class="main_table_border">
+
+{BEGIN conditions_block}
+<DIV id="conditions_block{$id}" class="loginshade">
+<span class=fieldname>Search for:</span>
+<input type="radio" name="type" {$all_checkbox}>{BEGIN all_checkbox_label}All conditions{END all_checkbox_label}
+&nbsp;&nbsp;&nbsp;
+<input type="radio" name="type" {$any_checkbox}>{BEGIN any_checkbox_label}Any condition{END any_checkbox_label}
+</div>
+{END conditions_block}
+<table cellpadding=4 cellspacing=0 border=0 id="fields_block{$id}">
+<tr valign=center>
+<td align=center valign=middle class="headerlist">&nbsp;</td>
+<td width=30 align=center valign=middle class=headerlist>NOT</td>
+<td align=center valign=middle class="headerlist">&nbsp; </td>
+<td align=center valign=middle class="headerlist">&nbsp; </td>
+<td align=center valign=middle class="headerlist" style="border-right:0px;">&nbsp;</td></tr>
+
+{BEGIN category_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN category_label}Category{END category_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$category_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_category}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$category_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$category_editcontrol1}&nbsp;</td>
+</tr>
+{END category_fieldblock}
+{BEGIN color_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN color_label}Color{END color_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$color_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_color}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$color_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$color_editcontrol1}&nbsp;</td>
+</tr>
+{END color_fieldblock}
+{BEGIN Date_Listed_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN Date_Listed_label}Date Listed{END Date_Listed_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$Date_Listed_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_Date_Listed}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Date_Listed_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Date_Listed_editcontrol1}&nbsp;</td>
+</tr>
+{END Date_Listed_fieldblock}
+{BEGIN descr_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN descr_label}Descr{END descr_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$descr_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_descr}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$descr_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$descr_editcontrol1}&nbsp;</td>
+</tr>
+{END descr_fieldblock}
+{BEGIN EPACity_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN EPACity_label}EPACity{END EPACity_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$EPACity_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_EPACity}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$EPACity_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$EPACity_editcontrol1}&nbsp;</td>
+</tr>
+{END EPACity_fieldblock}
+{BEGIN EPAHighway_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN EPAHighway_label}EPAHighway{END EPAHighway_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$EPAHighway_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_EPAHighway}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$EPAHighway_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$EPAHighway_editcontrol1}&nbsp;</td>
+</tr>
+{END EPAHighway_fieldblock}
+{BEGIN features_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN features_label}Features{END features_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$features_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_features}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$features_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$features_editcontrol1}&nbsp;</td>
+</tr>
+{END features_fieldblock}
+{BEGIN Horsepower_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN Horsepower_label}Horsepower{END Horsepower_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$Horsepower_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_Horsepower}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Horsepower_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Horsepower_editcontrol1}&nbsp;</td>
+</tr>
+{END Horsepower_fieldblock}
+{BEGIN id_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN id_label}Id{END id_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$id_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_id}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$id_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$id_editcontrol1}&nbsp;</td>
+</tr>
+{END id_fieldblock}
+{BEGIN Make_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN Make_label}Make{END Make_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$Make_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_Make}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Make_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Make_editcontrol1}&nbsp;</td>
+</tr>
+{END Make_fieldblock}
+{BEGIN Model_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN Model_label}Model{END Model_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$Model_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_Model}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Model_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Model_editcontrol1}&nbsp;</td>
+</tr>
+{END Model_fieldblock}
+{BEGIN Phone___fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN Phone___label}Phone #{END Phone___label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$Phone___notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_Phone__}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Phone___editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Phone___editcontrol1}&nbsp;</td>
+</tr>
+{END Phone___fieldblock}
+{BEGIN Price_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN Price_label}Price{END Price_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$Price_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_Price}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Price_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$Price_editcontrol1}&nbsp;</td>
+</tr>
+{END Price_fieldblock}
+{BEGIN UserID_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN UserID_label}User ID{END UserID_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$UserID_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_UserID}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$UserID_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$UserID_editcontrol1}&nbsp;</td>
+</tr>
+{END UserID_fieldblock}
+{BEGIN YearOfMake_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN YearOfMake_label}Year Of Make{END YearOfMake_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$YearOfMake_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_YearOfMake}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$YearOfMake_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$YearOfMake_editcontrol1}&nbsp;</td>
+</tr>
+{END YearOfMake_fieldblock}
+{BEGIN zipcode_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN zipcode_label}Zipcode{END zipcode_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$zipcode_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_zipcode}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$zipcode_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$zipcode_editcontrol1}&nbsp;</td>
+</tr>
+{END zipcode_fieldblock}
+</table>
+
+<div class="downedit" id="buttons_block{$id}">
+{BEGIN search_button}
+ <span class=buttonborder><input class=button type=button value="Search" {$searchbutton_attrs}></span>
+{END search_button} 
+{BEGIN reset_button}
+ <span class=buttonborder><input class=button type=button value="Reset" {$resetbutton_attrs}></span>
+{END reset_button}
+{BEGIN back_button}
+ <span class=buttonborder><input class=button type=button value="Back to list" {$backbutton_attrs}></span>
+{END back_button}
+</div>
+</div>
+</div>
+<b class="xbottom"><b class="xb4b"></b><b class="xb3b"></b><b class="xb2b"></b><b class="xb1b"></b></b>
+</td></tr></table>
+{END contents_block}
+{$footer}
+{END body}
+</body>
+</html>

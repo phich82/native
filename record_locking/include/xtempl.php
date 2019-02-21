@@ -1,0 +1,532 @@
+<?php
+// menuItem class
+include_once ("menuitem.php");
+include("testing.php");
+
+class XTempl
+{
+	var $xt_vars;
+	var $xt_stack;
+	var $template;
+	var $charsets;
+	var $testingFlag=false;
+	
+	function recTesting(&$arr)
+	{
+		global $testingLinks;
+		foreach($arr as $k=>$v)
+			if(is_array($v))
+				$this->recTesting($arr[$k]);
+			else
+				if(array_key_exists($k,$testingLinks))
+					$arr[$k].=" func=\"".$testingLinks[$k]."\"";
+	}
+	
+	function Testing()
+	{
+		if(!$this->testingFlag)
+			return;
+		$this->recTesting($this->xt_vars);
+	}
+	
+	function report_error($message)
+	{
+		echo $message;
+		exit();
+	}
+	
+	function XTempl()
+	{
+		$this->xt_vars=array();
+		$this->xt_stack=array(&$this->xt_vars);
+		$this->assign_function("header","xt_include",array("file"=>"include/header.php"));
+		$this->assign_function("footer","xt_include",array("file"=>"include/footer.php"));
+		$this->assign_function("event","xt_doevent",array());
+		$this->assign_function("label","xt_label",array());
+		$this->assign_function("custom","xt_custom",array());
+		$this->assign_function("caption","xt_caption",array());
+		$this->assign_function("mainmenu","xt_displaymenu",array());
+		$this->assign_function("quickjump_options","xt_displaymenu",array("quickjump"=>true));
+		
+		
+$this->charsets["English"]="Windows-1252";;
+		
+		$order = $this->getReadingOrder();
+		$this->assign("html_attrs", $order == 'RTL' ? 'dir=\'RTL\'' : '');
+	}
+	
+	function getReadingOrder()
+	{
+		if(@$_REQUEST["language"])
+			$charset = $this->charsets[$_REQUEST["language"]];
+		else if(@$_SESSION["language"])
+			$charset = $this->charsets[$_SESSION["language"]];
+		else
+			$charset = $this->charsets['English'];
+			
+		$cp = strtolower($charset);
+		if($cp == 'windows-1256' || $cp == 'windows-1255')
+			return 'RTL';
+		else
+			return 'LTR';
+	}
+
+function assign($name,$val)
+{
+	$this->xt_vars[$name]=$val;
+}
+function assignbyref($name,&$var)
+{
+	$this->xt_vars[$name]=&$var;
+}
+
+function assign_section($name,$begin,$end)
+{
+	$arr = array();
+	$arr["begin"]=$begin;
+	$arr["end"]=$end;
+	$this->xt_vars[$name]=&$arr;
+}
+
+function assign_loopsection($name,&$data)
+{
+	$arr = array();
+	$arr["data"]=&$data;
+	$this->xt_vars[$name]=&$arr;
+}
+
+
+function assign_function($name,$func,$params)
+{
+	$this->xt_vars[$name]=array("func"=>$func,"params"=>$params);
+}
+
+function assign_method($name,&$object,$method,$params)
+{
+	$this->xt_vars[$name]=array("object"=>&$object,"method"=>$method,"params"=>$params);
+}
+
+
+function xt_getvar($name)
+{
+	global $testingLinks;
+	for($i = count($this->xt_stack)-1;$i>=0;$i--)
+	{
+		if(array_key_exists($name,$this->xt_stack[$i]))
+			return $this->xt_stack[$i][$name];
+	}
+	if(!$this->testingFlag)
+		return false;
+		
+	if(array_key_exists($name,$testingLinks))
+		return "func=\"".$testingLinks[$name]."\"";
+	else
+		return false;
+}
+	function fetch_loaded($filtertag="")
+	{
+		ob_start();
+		$this->display_loaded($filtertag);
+		$out=ob_get_contents();
+		ob_end_clean();
+		return $out;
+	}
+
+	function fetch_loaded_before($filtertag)
+	{
+		$pos1=strpos($this->template,"{BEGIN ".$filtertag."}");
+		if($pos1===false)
+			return;
+		$str=substr($this->template,0,$pos1);
+		ob_start();
+		$this->Testing();
+		$this->xt_process_template($str);
+		$out=ob_get_contents();
+		ob_end_clean();
+		return $out;
+	}
+
+	function fetch_loaded_after($filtertag)
+	{
+		$pos2=strpos($this->template,"{END ".$filtertag."}");
+		if($pos2===false)
+			return;
+		$str=substr($this->template,$pos2+strlen("{END ".$filtertag."}"));
+		ob_start();
+		$this->Testing();
+		$this->xt_process_template($str);
+		$out=ob_get_contents();
+		ob_end_clean();
+		return $out;
+	}
+
+	
+	function call_func($var){
+		ob_start();
+		$params=$var["params"];
+		$func=$var["func"];
+		if(function_exists($func))
+			$func($params);
+		$out=ob_get_contents();
+		ob_end_clean();
+		return $out;
+	}
+	
+	function load_template($template)
+	{
+		$path_parts = pathinfo(__file__);
+		$path = $path_parts["dirname"];
+		$path = substr($path,0,strlen($path)-7)."templates/".$template;
+//	read template file
+		$this->template = myfile_get_contents($path);
+	}
+
+	function display_loaded($filtertag="")
+	{
+		$str=$this->template;
+		if($filtertag)
+		{
+			$pos1=strpos($this->template,"{BEGIN ".$filtertag."}");
+			$pos2=strpos($this->template,"{END ".$filtertag."}");
+			if($pos1===false || $pos2===false)
+				return;
+			$pos2+=strlen("{END ".$filtertag."}");
+			$str=substr($this->template,$pos1,$pos2-$pos1);
+		}
+		$this->Testing();
+		$this->xt_process_template($str);
+	}
+	function display($template)
+	{
+		$this->load_template($template);
+		$this->Testing();
+		$this->xt_process_template($this->template);
+	}
+	
+	function xt_process_template($str)
+	{
+//	parse template file tag by tag
+		$start=0;
+		$literal=false;
+		$len = strlen($str);
+		while(true)
+		{
+			$pos = strpos($str,"{",$start);
+			if($pos===false)
+			{
+				echo substr($str,$start,$len-$start);
+				break;
+			}
+			$section=false;
+			$var=false;
+			$message=false;
+			if(substr($str,$pos+1,6)=="BEGIN ")
+				$section=true;
+			elseif(substr($str,$pos+1,1)=='$')
+				$var=true;
+			elseif(substr($str,$pos+1,14)=='mlang_message ')
+			{
+				$message=true;
+			}
+			else
+			{
+//	no tag, just '{' char
+				echo substr($str,$start,$pos-$start+1);
+				$start=$pos+1;
+				continue;
+			}
+			echo substr($str,$start,$pos-$start);
+			if($section)
+			{
+//	section
+				$endpos=strpos($str,"}",$pos);
+				if($endpos===false)
+				{
+					$this->report_error("Page is broken");
+					return;
+				}
+				$section_name=trim(substr($str,$pos+7,$endpos-$pos-7));
+				$endtag="{END ".$section_name."}";
+				$endpos1=strpos($str,$endtag,$endpos);
+				if($endpos1===false)
+				{
+					echo "End tag not found:".htmlspecialchars($endtag);
+					$this->report_error("Page is broken");
+					return;
+				}
+				$section=substr($str,$endpos+1,$endpos1-$endpos-1);
+				$start=$endpos1+strlen($endtag);
+				$var = $this->xt_getvar($section_name);
+				if($var===false)
+				{
+					continue;
+				}
+				$begin="";
+				$end="";
+				if(is_array($var))
+				{
+					$begin=@$var["begin"];
+					$end=@$var["end"];
+					$var=@$var["data"];
+				}
+				if(!is_array($var))
+				{
+//	if section
+					echo $begin;
+					$this->xt_process_template($section);
+					$this->processVar($end, $varparams);
+				}
+				else
+				{
+//	foreach section
+					echo $begin;
+					$keys=array_keys($var);
+					foreach($keys as $i)
+					{
+						$this->xt_stack[]=&$var[$i];
+						if(is_array($var[$i]) && array_key_exists("begin",$var[$i]))
+							echo $var[$i]["begin"];
+						$this->xt_process_template($section);
+						array_pop($this->xt_stack);
+						if(is_array($var[$i]) && array_key_exists("end",$var[$i]))
+							echo $var[$i]["end"];
+					}
+					$this->processVar($end, $varparams);
+				}
+			}
+			elseif($var)
+			{
+//	display a variable or call a function
+				$endpos=strpos($str,"}",$pos);
+				if($endpos===false)
+				{
+					$this->report_error("Page is broken");
+					return;
+				}
+				$varparams = explode(" ",trim(substr($str,$pos+2,$endpos-$pos-2)));
+				$var_name = $varparams[0];
+				unset($varparams[0]);
+				$start=$endpos+1;
+				$var = $this->xt_getvar($var_name);
+				if($var===false)
+					continue;
+					
+				$this->processVar($var, $varparams);
+			}
+			elseif($message)
+			{
+				$endpos=strpos($str,"}",$pos);
+				if($endpos===false)
+				{
+					$this->report_error("Page is broken");
+					return;
+				}
+				$tag = trim(substr($str,$pos+15,$endpos-$pos-15));
+				$start=$endpos+1;
+				echo htmlspecialchars(mlang_message($tag));
+			}
+		}
+	}
+	
+	function processVar(&$var, &$varparams)
+	{
+		if(!is_array($var))
+		{
+		//	just display a value
+			echo $var;
+		}
+		elseif(array_key_exists("func",$var))
+		{
+		//	call a function
+			$params=array();
+			if(array_key_exists("params",$var))
+				$params=$var["params"];
+			foreach($varparams as $key=>$val)
+				$params["custom".$key]=$val;
+			$func=$var["func"];
+			if(function_exists($func))
+				$func($params);
+		}
+		elseif(array_key_exists("method",$var))
+		{
+			$params=array();
+			if(array_key_exists("params",$var))
+				$params=$var["params"];
+			foreach($varparams as $key=>$val)
+				$params["custom".$key]=$val;
+			$method=$var["method"];
+			if(method_exists($var["object"],$method))
+				$var["object"]->$method($params);
+		}
+		else
+		{
+			$this->report_error("Incorrect variable value - ".$var_name);
+			return;
+		}
+		
+	}
+}
+function xt_displaymenu($params)
+{
+	global $strTableName, $pageName;	
+	include("displaymenu.php");
+}
+//	BuildEditControl wrapper
+function xt_buildeditcontrol(&$params)
+{
+	$field=$params["field"];
+	if($params["mode"]=="edit")
+		$mode=MODE_EDIT;
+	else if($params["mode"]=="add")
+	{
+		$mode=MODE_ADD;
+	}
+	else if($params["mode"]=="inline_edit")
+		$mode=MODE_INLINE_EDIT;
+	else if($params["mode"]=="inline_add")
+		$mode=MODE_INLINE_ADD;
+	else
+		$mode=MODE_SEARCH;
+	$fieldNum=0;
+	if(@$params["fieldNum"])
+		$fieldNum=$params["fieldNum"];
+	$id="";
+	if(@$params["id"]!=="")
+		$id=$params["id"];
+	$format=GetEditFormat($field);
+	if(@$params["format"]!="")
+		$format=$params["format"];
+	$append="";
+
+	if(($mode==MODE_EDIT || $mode==MODE_ADD || $mode==MODE_INLINE_EDIT || $mode==MODE_INLINE_ADD) && $format==EDIT_FORMAT_READONLY)
+	{
+		global $readonlyfields;
+		echo $readonlyfields[$field];
+	}
+	if($mode==MODE_SEARCH)
+	{			
+		$format=@$params["format"];
+	}
+	$validate = array();
+	if(count(@$params["validate"]))
+		$validate = @$params["validate"];
+		
+	$additionalCtrlParams = array();
+	if(count(@$params["additionalCtrlParams"]))
+		$additionalCtrlParams = @$params["additionalCtrlParams"];
+		
+	$pageObj = (isset($params["pageObj"]) ? $params["pageObj"] : null);
+		
+	BuildEditControl($field,@$params["value"],$format,$mode,$fieldNum,$id,$validate,$additionalCtrlParams, $pageObj);
+}
+
+function xt_showchart($params)
+{
+$width=700;
+$height=530;
+if(array_key_exists("custom1",$params))
+	$width=$params["custom1"];
+if(array_key_exists("custom2",$params))
+	$height=$params["custom2"];
+//$refresh=GetTableData($params["chartname"],".ChartRefreshTime")*1000;
+$refresh=0;
+?>
+<div id='<?php echo $params["chartname"] ?>'>
+<noscript>
+	<object id="<?php echo $params['chartname'];?>" 
+			name="<?php echo $params['chartname'];?>" 
+			classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+			width="100%" 
+			height="100%" 
+			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+		<param name="movie" value="libs/swf/Preloader.swf" />
+		<param name="bgcolor" value="#FFFFFF" />
+		<param name="wmode" value="opaque" />
+		<param name="allowScriptAccess" value="always" />
+		<param name="flashvars" value="swfFile=<?php echo 'dchartdata.php%3Fchartname%3D'.$params['chartname'] ?>" />
+		
+		<embed type="application/x-shockwave-flash" 
+			   pluginspage="http://www.adobe.com/go/getflashplayer" 
+			   src="libs/swf/Preloader.swf" 
+			   width="100%" 
+			   height="100%" 
+			   id="<?php echo $params['chartname'];?>" 
+			   name="<?php echo $params['chartname'];?>" 
+			   bgColor="#FFFFFF" 
+			   allowScriptAccess="always" 
+			   flashvars="swfFile=<?php echo 'dchartdata.php%3Fchartname%3D'.$params['chartname'] ?>" />
+	</object>				
+</noscript>
+<script type="text/javascript" language="javascript" src="libs/js/AnyChart.js"></script>
+<script type="text/javascript" language="javascript">
+	//<![CDATA[
+	var chart = new AnyChart('libs/swf/AnyChart.swf','libs/swf/Preloader.swf');
+	chart.width = '<?php echo $width; ?>';
+	chart.height = '<?php echo $height; ?>';
+	chart.wMode='opaque';
+
+	var xmlFile = 'dchartdata.php%3Fchartname%3D<?php echo jsreplace($params["chartname"]);?>';
+	xmlFile += '%26ctype%3D<?php echo $params["ctype"];?>';
+	chart.setXMLFile(xmlFile);
+	chart.write('<?php echo $params["chartname"];?>');
+	if("<?php echo $refresh?>"!="0")
+		setInterval('refreshChart()',<?php echo $refresh?>);
+	function refreshChart()
+	{
+		page='dchartdata.php?chartname=<?php echo jsreplace($params["chartname"]);?>';
+		params={
+				action:'refresh',
+				rndval:Math.random()
+				};
+		$.get(page,params,function(xml)
+			{
+				var arr = new Array();
+				arr=xml.split("\n");
+				for(i=0; i<arr.length;i+=2)
+				{
+					chart.removeSeries(arr[i]);
+					chart.addSeries(arr[i+1]);
+					chart.updatePointData(arr[i]+"_gauge",arr[i]+"_point",{value: arr[i+1]});
+				}
+				chart.refresh();
+			});
+
+	}
+	//]]>
+</script>
+</div>
+<?php
+	if(function_exists($params["chartname"]))
+		eval($params["chartname"]."();");}
+
+function xt_include($params)
+{
+	$path_parts = pathinfo(__file__);
+	$path = $path_parts["dirname"];
+	$path = substr($path,0,strlen($path)-7);
+	if(file_exists($path.$params["file"]))
+		include($path.$params["file"]);
+}
+
+function xt_doevent($params)
+{
+	if(function_exists(@$params["custom1"]))
+		eval($params["custom1"].'($params);');
+}
+
+function xt_label($params)
+{
+	echo htmlspecialchars(GetFieldLabel($params["custom1"],$params["custom2"]));
+}
+
+function xt_custom($params)
+{
+	echo GetCustomLabel($params["custom1"]);
+}
+
+function xt_caption($params)
+{
+	echo GetTableCaption($params["custom1"]);
+}
+
+?>

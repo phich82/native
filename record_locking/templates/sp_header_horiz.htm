@@ -1,0 +1,23 @@
+<span id="searchform{$id}" align="absmiddle">
+	<span id="searchPanelHeader{$id}">  
+		{BEGIN searchform_text}
+		<input type="text" {$searchfor_attrs} {$searchForSize10}>
+		{END searchform_text}
+		&nbsp;
+		{BEGIN searchform_search}
+			<span class="buttonborder"><input class="button" type="button" {$searchbutton_attrs} ></span>
+		{END searchform_search}
+		&nbsp;
+		{BEGIN searchform_showall}	
+		<span class="buttonborder"><input type="button" class="button" value="##message SHOW_ALL##" {$showallbutton_attrs}></span>
+		{END searchform_showall}
+	</span>
+	{BEGIN searchPanelTopButtons}
+	<span>
+		&nbsp;
+		<img id="showSrchWin{$id}" {$showHideSearchWin_attrs}/>
+		&nbsp;		
+		<img id="showOptPanel{$id}" {$showHideSearchPanel_attrs}/>
+	</span>
+	{END searchPanelTopButtons}
+</span>

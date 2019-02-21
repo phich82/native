@@ -1,0 +1,79 @@
+<html {$html_attrs}>
+<head><title>Carsmake</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+<!--[if IE]>
+<link REL="stylesheet" href="include/styleIE.css" type="text/css">
+<![endif]-->
+<style>
+#center_block{$id} {width:500px;margin:0 auto;}
+#contents_block{$id} {text-align:center;}
+#header_block{$id} {white-space:nowrap;height:31px;padding:5px;text-align:center;}
+#footer_block{$id} {height:15px;}
+#fields_block{$id} {width:100%}
+#buttons_block{$id} {padding-bottom:5px;white-space:nowrap;text-align:center;}
+#required_block{$id} {text-align:left;padding:5px}
+#message_block{$id} {padding:5px 5px;text-align:center;}
+#span{$id} {margin:0 20px 0 20px;}
+</style>
+</head>
+<body>
+<div id="system_div{$id}" class="admin_message" {$system_attrs}>{$system_message}</div>
+
+{BEGIN body}
+{$header}
+
+<TABLE align=center id="center_block{$id}" cellpadding=0 cellspacing=0 {$centerblock_attrs}>
+<tr><td>
+<b class="xtop"><b class="xb1b"></b><b class="xb2b"></b><b class="xb3b"></b><b class="xb4b"></b></b>
+<div id="header_block{$id}" class="upeditmenu">
+Carsmake, Edit record [
+Id: {$show_key1}
+]
+</div>
+<div class="main_table_border2" style="border: 1px solid #516C81;">
+<div class="main_table_border">
+<TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0 width="480">
+{BEGIN message_block}
+<div id="message_block{$id}" class=downedit>{$message}</div>
+{END message_block}
+
+{BEGIN make_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">
+{BEGIN make_label}Make{END make_label}
+</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$make_editcontrol}
+  </td></tr>
+{END make_fieldblock}
+</table>
+</div>
+<div class="downedit" id="buttons_block{$id}">
+<div id="required_block{$id}" ><img alt="bullet" src="images/icon_required.gif"> - Required field</div>
+{BEGIN save_button}
+<span class="buttonborder"><input id="savebutton{$id}" class="button" type="submit" value="Save" name="submit1" {$savebutton_attrs}></span>
+{END save_button}
+{BEGIN reset_button}
+<span class="buttonborder"><input class="button" type="reset" value="Reset" {$resetbutton_attrs}></span>
+{END reset_button}
+<span id="span{$id}">&nbsp;</span>
+{BEGIN prev_button}
+ <span class="buttonborder"><input id="prev{$id}" class="button" type="reset" value=" <<< " {$prevbutton_attrs}></span>
+{END prev_button}
+{BEGIN back_button}
+<span class="buttonborder"><input class="button" type="button" value="Back to list" {$backbutton_attrs}></span>
+{END back_button}
+{BEGIN next_button}
+ <span class="buttonborder"><input id="next{$id}" class="button" type="reset" value=" >>> " {$nextbutton_attrs}></span>
+{END next_button}
+</div>
+</div>
+<b class="xbottom"><b class="xb4b"></b><b class="xb3b"></b><b class="xb2b"></b><b class="xb1b"></b></b>
+
+</td></tr>
+</table>
+{END body}
+{$footer}
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html {$html_attrs}>
+<head>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+<!--[if IE]>
+<link REL="stylesheet" href="include/styleIE.css" type="text/css">
+<![endif]-->
+<style>
+#center_block {width:35%;margin:0 auto;min-width:300px;}
+#header_block {padding:2px 5px 6px;text-align:center;line-height: 1.8}
+#tables_block {width:auto;margin:0;}
+#header_block > span {margin:2 5px}
+#login_top {height:31;text-align:center}
+#login_top span {padding-right:10px}
+.captions {padding:6px 10px;}
+</style>
+</head>
+<body>
+{BEGIN body}
+{$header}
+<table align=center id="center_block" cellpadding=0 cellspacing=0><tr><td>
+
+<b class="xtop"><b class="xb1b"></b><b class="xb2b"></b><b class="xb3b"></b><b class="xb4b"></b></b>
+<div class=upeditmenu id="login_top">
+        {BEGIN loggedas_block}
+    <span>Logged on as&nbsp;<b><font color=#FCFAEA>{$username}</font></b></span>
+    {END loggedas_block}
+    {BEGIN logout_link}
+    <input class=button type=button value="Log out" {$logoutlink_attrs}>
+    {END logout_link}
+    </div>
+<div class="main_table_border2">
+	<div class="main_table_border" >
+	<div id="tables_block">
+<!-- MainMenuBegin -->
+{$mainmenu}
+<!-- MainMenuEnd -->
+	</div>
+	</div>
+</div>
+<b class="xbottom"><b class="xb4b"></b><b class="xb3b"></b><b class="xb2b"></b><b class="xb1b"></b></b>
+
+
+</td></tr>
+</table>
+{$footer}
+{END body}
+</body>
+</html>

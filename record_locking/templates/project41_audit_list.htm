@@ -1,0 +1,356 @@
+<html {$html_attrs}>
+<head>
+<title>Project41 Audit</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+<!--[if IE]>
+<link REL="stylesheet" href="include/styleIE.css" type="text/css">
+<![endif]-->
+{BEGIN style_block}
+<style>
+#height100{$id} {height:auto;padding:10px;}
+/*#search_block{$id} div {padding:5px 7px;}*/
+#global_block{$id} {padding:5px 12px;/*min-height:800px;*/ border: 1px solid #516C81;}
+#search_block_center{$id} {padding:3px 5px;text-align:center;}
+#center_block{$id} {text-align:center;padding:4px;}
+#center_block_caption{$id} {text-align:center;padding:4px;}
+#left_block{$id} { position:absolute;width:202px; left:20px; overflow:visible; margin-top:10px}
+#right_block{$id} { padding:10px 0px 0px 0px;}
+/*{BEGIN shiftstyle_block}*/
+#right_block{$id} { padding-left:220px;}
+/*{END shiftstyle_block}*/
+#toplinks_block{$id} {padding:0 5px 5px 5px;}
+#toplinks_block{$id} > * {margin:4px 6px;vertical-align:middle;}
+#menu_block{$id} {clear:left;padding:5px; width:auto;}
+#details_block{$id}, #pages_block{$id}, #records_pp_block{$id} {white-space:nowrap;padding:5px 7px;text-align:center;}
+#recordspp_block{$id} {padding:10px;}
+#recordcontrols_block{$id} {padding:13px 10px 9px 10px;text-align:left}
+#record_controls{$id} > *,#newrecord_controls{$id} > * {margin:2px 2px;vertical-align:middle}
+.menuitem {padding:6px 18px 10px 13px}
+.menuitem_active {padding:6px 18px 11px 13px}
+.message_block {text-align:center;}
+.grid_recordheader {padding:0 5px 5px}
+.grid_recordheader * {margin:0px 5px; vertical-align:middle}
+#grid_block{$id} {margin-top:10px;}
+.headerlist_right2 *,.headerlist * {vertical-align:middle}
+body{margin:0px;padding:0px;}
+
+#searchPanelContainer{$id}{
+	width: 200px
+
+}
+</style>
+{END style_block}
+<!--[if IE]>
+{BEGIN iestyle_block}
+<style>
+#right_block{$id} { width:100%}
+/*#global_block{$id} {height:95%}*/
+</style>
+{END iestyle_block}
+<![endif]-->
+</head>
+
+<body marginheight=0 marginwidth=0 {$bodyattrs}>
+{BEGIN body}
+<div id="height100{$id}">
+{$header}
+<b class="xtop"><b class="xb1b"></b><b class="xb2b"></b><b class="xb3b"></b><b class="xb4b"></b></b>
+{BEGIN toplinks_block}
+<div id="toplinks_block{$id}" class="upeditmenu">
+<span><font style="FONT-FAMILY: Verdana, Arial;">Logged on as</font>&nbsp;<b>{$username}</b>&nbsp;</span>
+<span class=buttonborder><input type=button class=button value="Log out" {$logoutlink_attrs}></span>
+
+
+
+{BEGIN asearch_link}
+<span class=buttonborder><input type=button class=button value="Advanced search" {$asearchlink_attrs}></span>
+{END asearch_link}
+
+
+
+
+</div>
+{END toplinks_block}
+<div class="main_table_border2 main_table" id="global_block{$id}">
+{BEGIN left_block}
+<div id="left_block{$id}" >
+    <b class="xtop"><b class="xb1b1"></b><b class="xb2b1"></b><b class="xb3b1"></b><b class="xb4b1"></b></b>
+	<!-- MenuBegin -->
+{BEGIN menu_block}
+<div class="menu_table" id="menu_block{$id}">
+<!-- MainMenuBegin -->
+{$mainmenu}
+<!-- MainMenuEnd -->
+</div>
+{END menu_block}
+		
+	<!-- MenuEnd -->	
+	{BEGIN search_records_block}
+	<div>
+        		{BEGIN searchform}
+        <div class="menu_table" id="search_block{$id}">
+        
+           <!-- search panel and window -->
+           <style>
+<!--
+#center_block{$id}{
+	padding: 5px;
+}
+#searchPanelHeader{$id}{
+	padding: 5px 0px 5px 5px;
+}
+-->
+</style>
+
+<!-- search panel and window header -->
+<div class="blackshade2" id="center_block{$id}">
+	Search for:
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img id="showSrchWin{$id}" {$showHideSearchWin_attrs}/>
+	&nbsp;		
+	<img id="showOptPanel{$id}" {$showHideSearchPanel_attrs}/>
+</div>
+<div id="searchform{$id}">
+	<div class="blackshade" id="searchPanelHeader{$id}">
+		{BEGIN searchform_text}
+			<input type=text {$searchfor_attrs} {$searchForSize10}>
+		{END searchform_text}
+		&nbsp;
+		{BEGIN searchform_search}
+			<span class="buttonborder"><input class="button" type="button" {$searchbutton_attrs} /></span>
+		{END searchform_search}
+		&nbsp;		
+		{BEGIN searchform_showall}
+			<span class=buttonborder><input type=button class="button" value="Show all" {$showallbutton_attrs}></span>
+		{END searchform_showall}
+	</div>
+</div>  
+			<div id="searchPanelContainer{$id}" class="searchPanelContainer">			
+			{$adv_search_panel}
+			</div>                      
+            
+            <div class="blackshade2" id="details_block{$id}">
+                {BEGIN details_block}
+                <span>Details found: {$records_found}</span>
+                {END details_block}
+            </div>
+            <div class="menu_text blackshade" id="pages_block{$id}">
+                {BEGIN pages_block}
+                <span>Page {$page} of {$maxpages}</span>
+                {END pages_block}
+            </div>
+        </div>
+		{END searchform}
+        <div class="menu_table2">
+            {BEGIN recordspp_block}
+            <div class="menu_text blackshade" id="recordspp_block{$id}" >
+                Records Per Page:&nbsp;
+                <select {$recordspp_attrs}>
+	                <option value="10" {$rpp10_selected}>10</option>
+	                <option value="20" {$rpp20_selected}>20</option>
+	                <option value="30" {$rpp30_selected}>30</option>
+	                <option value="50" {$rpp50_selected}>50</option>
+	                <option value="100" {$rpp100_selected}>100</option>
+	                <option value="500" {$rpp500_selected}>500</option>
+                </select>
+            </div>
+            {END recordspp_block}
+        </div>
+	</div>
+	{END search_records_block}
+    </div>
+{END left_block}
+    <div id="right_block{$id}">
+        
+        
+        <div class=list_table1>
+        <div class=list_table>
+        
+        <div class=blackshade2 id="center_block_caption{$id}">
+        Project41&nbsp;Audit
+        </div>
+        {BEGIN recordcontrols_block}
+        <div class=blackshade id="recordcontrols_block{$id}">
+			
+		{$lookupSearchControls}
+		
+		{BEGIN record_controls}
+		<span id="record_controls{$id}">
+        
+        
+        
+        
+        		</span>
+		{END record_controls}
+        </div>
+        {END recordcontrols_block}
+<div>
+{BEGIN grid_block}
+<div id="grid_block{$id}">
+<table width="100%" name="maintable" border=0 cellpadding=3 cellspacing=0 class="data" id="project41_audit">
+{BEGIN grid_header}
+<thead>
+<tr valign="top" {$gridHeader_attrs}>
+{BEGIN record_header}
+
+
+
+
+{BEGIN view_column}
+<th id=sys4 width=50 align="center" class="headerlist"><img alt=" " src="include/img/icon_view.gif"></th>
+{END view_column}
+
+
+
+{BEGIN id_fieldheadercolumn}
+<th class="headerlist" align=center>
+{BEGIN id_fieldheader}
+<a class="tablelinks" {$id_orderlinkattrs}>
+Id</a>
+{END id_fieldheader}
+</th>
+{END id_fieldheadercolumn}
+{BEGIN datetime_fieldheadercolumn}
+<th class="headerlist" align=center>
+{BEGIN datetime_fieldheader}
+<a class="tablelinks" {$datetime_orderlinkattrs}>
+Datetime</a>
+{END datetime_fieldheader}
+</th>
+{END datetime_fieldheadercolumn}
+{BEGIN ip_fieldheadercolumn}
+<th class="headerlist" align=center>
+{BEGIN ip_fieldheader}
+<a class="tablelinks" {$ip_orderlinkattrs}>
+Ip</a>
+{END ip_fieldheader}
+</th>
+{END ip_fieldheadercolumn}
+{BEGIN user_fieldheadercolumn}
+<th class="headerlist" align=center>
+{BEGIN user_fieldheader}
+<a class="tablelinks" {$user_orderlinkattrs}>
+User</a>
+{END user_fieldheader}
+</th>
+{END user_fieldheadercolumn}
+{BEGIN table_fieldheadercolumn}
+<th class="headerlist" align=center>
+{BEGIN table_fieldheader}
+<a class="tablelinks" {$table_orderlinkattrs}>
+Table</a>
+{END table_fieldheader}
+</th>
+{END table_fieldheadercolumn}
+{BEGIN action_fieldheadercolumn}
+<th class="headerlist" align=center>
+{BEGIN action_fieldheader}
+<a class="tablelinks" {$action_orderlinkattrs}>
+Action</a>
+{END action_fieldheader}
+</th>
+{END action_fieldheadercolumn}
+{BEGIN description_fieldheadercolumn}
+<th class="headerlist" align=center>
+{BEGIN description_fieldheader}
+<a class="tablelinks" {$description_orderlinkattrs}>
+Description</a>
+{END description_fieldheader}
+</th>
+{END description_fieldheadercolumn}
+
+{BEGIN endrecordheader_block}
+<th class="table_right"></th>
+{END endrecordheader_block}
+{END record_header}
+</tr>
+</thead>
+{END grid_header}
+
+<tbody>
+{BEGIN grid_row}
+<tr valign="top" {$rowstyle} {$rowattrs}>
+{BEGIN grid_record}
+
+
+
+
+{BEGIN view_column}
+<td align="center" valign=middle>
+{BEGIN view_link}
+<a class=tablelinks {$viewlink_attrs}>View</a>
+{END view_link}
+</td>
+{END view_column}
+
+
+
+{BEGIN id_fieldcolumn}
+<td align=center valign=middle class=borderbody {$id_style}>
+{$id_value}
+</td>
+{END id_fieldcolumn}
+{BEGIN datetime_fieldcolumn}
+<td align=center valign=middle class=borderbody {$datetime_style}>
+{$datetime_value}
+</td>
+{END datetime_fieldcolumn}
+{BEGIN ip_fieldcolumn}
+<td align=center valign=middle class=borderbody {$ip_style}>
+{$ip_value}
+</td>
+{END ip_fieldcolumn}
+{BEGIN user_fieldcolumn}
+<td align=center valign=middle class=borderbody {$user_style}>
+{$user_value}
+</td>
+{END user_fieldcolumn}
+{BEGIN table_fieldcolumn}
+<td align=center valign=middle class=borderbody {$table_style}>
+{$table_value}
+</td>
+{END table_fieldcolumn}
+{BEGIN action_fieldcolumn}
+<td align=center valign=middle class=borderbody {$action_style}>
+{$action_value}
+</td>
+{END action_fieldcolumn}
+{BEGIN description_fieldcolumn}
+<td align=center valign=middle class=borderbody {$description_style}>
+{$description_value}
+</td>
+{END description_fieldcolumn}
+
+{BEGIN endrecord_block}
+<td width=20 class=table_right {$endrecordblock_attrs}>&nbsp;</td>
+{END endrecord_block}
+{END grid_record}
+</tr>
+{END grid_row}
+</tbody>
+	
+</table>
+</div>
+{END grid_block}
+</div>
+{BEGIN message_block}
+<div class="xboxcontentb message_block">
+{$message}
+</div>
+{END message_block}
+{BEGIN pagination_block}
+<div class="xboxcontentb message_block">
+{$pagination}
+</div>
+{END pagination_block}
+</div>
+</div>
+</div>
+</div>
+<b class="xbottom"><b class="xb4b"></b><b class="xb3b"></b><b class="xb2b"></b><b class="xb1b"></b></b>
+{$footer}
+</div>
+{END body}
+</body>
+</html>
+

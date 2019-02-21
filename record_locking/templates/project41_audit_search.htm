@@ -1,0 +1,172 @@
+<html {$html_attrs}>
+<head>
+<title>Project41 Audit: Advanced search page</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+<!--[if IE]>
+<link REL="stylesheet" href="include/styleIE.css" type="text/css">
+<![endif]-->
+<style>
+#center_block{$id} {margin:0 auto;}
+#contents_block{$id} {text-align:center;width:100%}
+#header_block{$id} {white-space:nowrap;height:31px;padding-top:5px;}
+#main_block{$id} {padding:10px 0;width:100%}
+#inmain_block{$id} {margin:0 10px}
+#buttons_block{$id} {width:100%;padding:10px 0;}
+#buttons_block{$id} > * {margin:0 2px}
+#conditions_block{$id} {padding:5px;}
+</style>
+<!--[if IE]>
+<style>
+#main_block{$id} {padding:10px 10;}
+#inmain_block{$id} {margin:0 0px}
+</style>
+<![endif]-->
+</head>
+<body bgcolor=white>
+{BEGIN body}
+{$header}
+{BEGIN contents_block}
+<table align=center id="center_block{$id}"><tr><td id="contents_block{$id}">
+	
+<b class="xtop"><b class="xb1b"></b><b class="xb2b"></b><b class="xb3b"></b><b class="xb4b"></b></b>
+<div id="header_block{$id}" class="upeditmenu">Project41 Audit - Advanced search</div>
+
+<div class="main_table_border2">
+<div class="main_table_border">
+
+{BEGIN conditions_block}
+<DIV id="conditions_block{$id}" class="loginshade">
+<span class=fieldname>Search for:</span>
+<input type="radio" name="type" {$all_checkbox}>{BEGIN all_checkbox_label}All conditions{END all_checkbox_label}
+&nbsp;&nbsp;&nbsp;
+<input type="radio" name="type" {$any_checkbox}>{BEGIN any_checkbox_label}Any condition{END any_checkbox_label}
+</div>
+{END conditions_block}
+<table cellpadding=4 cellspacing=0 border=0 id="fields_block{$id}">
+<tr valign=center>
+<td align=center valign=middle class="headerlist">&nbsp;</td>
+<td width=30 align=center valign=middle class=headerlist>NOT</td>
+<td align=center valign=middle class="headerlist">&nbsp; </td>
+<td align=center valign=middle class="headerlist">&nbsp; </td>
+<td align=center valign=middle class="headerlist" style="border-right:0px;">&nbsp;</td></tr>
+
+{BEGIN id_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN id_label}Id{END id_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$id_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_id}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$id_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$id_editcontrol1}&nbsp;</td>
+</tr>
+{END id_fieldblock}
+{BEGIN datetime_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN datetime_label}Datetime{END datetime_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$datetime_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_datetime}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$datetime_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$datetime_editcontrol1}&nbsp;</td>
+</tr>
+{END datetime_fieldblock}
+{BEGIN ip_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN ip_label}Ip{END ip_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$ip_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_ip}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$ip_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$ip_editcontrol1}&nbsp;</td>
+</tr>
+{END ip_fieldblock}
+{BEGIN user_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN user_label}User{END user_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$user_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_user}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$user_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$user_editcontrol1}&nbsp;</td>
+</tr>
+{END user_fieldblock}
+{BEGIN table_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN table_label}Table{END table_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$table_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_table}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$table_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$table_editcontrol1}&nbsp;</td>
+</tr>
+{END table_fieldblock}
+{BEGIN action_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN action_label}Action{END action_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$action_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_action}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$action_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$action_editcontrol1}&nbsp;</td>
+</tr>
+{END action_fieldblock}
+{BEGIN description_fieldblock}	
+<tr>
+	<td style="padding-left:15px;" class="editshade_b"><b>{BEGIN description_label}Description{END description_label}</b>
+	<td align=center style="padding-left:10px;" class="editshade_lb"><input type=checkbox {$description_notbox}></td>
+	
+	<td style="padding-left:10px;" class="editshade_lb">
+	{$searchtype_description}
+	</td>
+	
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$description_editcontrol}&nbsp;</td>
+
+	<td width=270 style="padding-left:10px;" class="editshade_lb">{$description_editcontrol1}&nbsp;</td>
+</tr>
+{END description_fieldblock}
+</table>
+
+<div class="downedit" id="buttons_block{$id}">
+{BEGIN search_button}
+ <span class=buttonborder><input class=button type=button value="Search" {$searchbutton_attrs}></span>
+{END search_button} 
+{BEGIN reset_button}
+ <span class=buttonborder><input class=button type=button value="Reset" {$resetbutton_attrs}></span>
+{END reset_button}
+{BEGIN back_button}
+ <span class=buttonborder><input class=button type=button value="Back to list" {$backbutton_attrs}></span>
+{END back_button}
+</div>
+</div>
+</div>
+<b class="xbottom"><b class="xb4b"></b><b class="xb3b"></b><b class="xb2b"></b><b class="xb1b"></b></b>
+</td></tr></table>
+{END contents_block}
+{$footer}
+{END body}
+</body>
+</html>

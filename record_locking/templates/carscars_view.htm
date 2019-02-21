@@ -1,0 +1,180 @@
+<html {$html_attrs}>
+<head><title>Carscars</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+<!--[if IE]>
+<link REL="stylesheet" href="include/styleIE.css" type="text/css">
+<![endif]-->
+<style>
+#center_block{$id} {width:500px;margin:0 auto;}
+#contents_block{$id} {text-align:center;}
+#header_block{$id} {white-space:nowrap;height:31px;padding:5px;text-align:center;}
+#footer_block{$id} {height:15px;}
+#fields_block{$id} {width:100%}
+#buttons_block{$id} {padding-bottom:5px;white-space:nowrap;text-align:center;}
+#required_block{$id} {text-align:left;padding:5px}
+#message_block{$id} {padding:5px 5px;text-align:center;}
+
+</style>
+</head>
+<body>
+{BEGIN body}
+{$header}
+<div>
+
+
+<TABLE align=center id="center_block{$id}" cellpadding=0 cellspacing=0><tr><td>
+
+<b class="xtop"><b class="xb1b"></b><b class="xb2b"></b><b class="xb3b"></b><b class="xb4b"></b></b>
+<div id="header_block{$id}" class="upeditmenu">
+Carscars, View record [
+Id: {$show_key1}
+]
+</div>
+<div class="main_table_border2" style="border: 1px solid #516C81;">
+<div class="main_table_border">
+<TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0 width="480">
+
+{BEGIN category_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Category</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$category_value}&nbsp;
+  </td></tr>
+{END category_fieldblock}
+{BEGIN color_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Color</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$color_value}&nbsp;
+  </td></tr>
+{END color_fieldblock}
+{BEGIN Date_Listed_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Date Listed</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Date_Listed_value}&nbsp;
+  </td></tr>
+{END Date_Listed_fieldblock}
+{BEGIN descr_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Descr</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$descr_value}&nbsp;
+  </td></tr>
+{END descr_fieldblock}
+{BEGIN EPACity_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">EPACity</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$EPACity_value}&nbsp;
+  </td></tr>
+{END EPACity_fieldblock}
+{BEGIN EPAHighway_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">EPAHighway</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$EPAHighway_value}&nbsp;
+  </td></tr>
+{END EPAHighway_fieldblock}
+{BEGIN features_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Features</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$features_value}&nbsp;
+  </td></tr>
+{END features_fieldblock}
+{BEGIN Horsepower_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Horsepower</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Horsepower_value}&nbsp;
+  </td></tr>
+{END Horsepower_fieldblock}
+{BEGIN id_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Id</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$id_value}&nbsp;
+  </td></tr>
+{END id_fieldblock}
+{BEGIN Make_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Make</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Make_value}&nbsp;
+  </td></tr>
+{END Make_fieldblock}
+{BEGIN Model_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Model</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Model_value}&nbsp;
+  </td></tr>
+{END Model_fieldblock}
+{BEGIN Phone___fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Phone #</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Phone___value}&nbsp;
+  </td></tr>
+{END Phone___fieldblock}
+{BEGIN Picture_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Picture</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Picture_value}&nbsp;
+  </td></tr>
+{END Picture_fieldblock}
+{BEGIN Price_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Price</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$Price_value}&nbsp;
+  </td></tr>
+{END Price_fieldblock}
+{BEGIN UserID_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">User ID</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$UserID_value}&nbsp;
+  </td></tr>
+{END UserID_fieldblock}
+{BEGIN YearOfMake_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Year Of Make</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$YearOfMake_value}&nbsp;
+  </td></tr>
+{END YearOfMake_fieldblock}
+{BEGIN zipcode_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Zipcode</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$zipcode_value}&nbsp;
+  </td></tr>
+{END zipcode_fieldblock}
+</table>
+</div>
+<div class="downedit" id="buttons_block{$id}">
+{BEGIN prev_button}
+ <span class=buttonborder><input class=button type=reset value=" <<< " {$prevbutton_attrs}></span>
+{END prev_button}
+{BEGIN back_button}
+<span class=buttonborder><input class=button type=button value="Back to list" {$backbutton_attrs}></span>
+{END back_button}
+{BEGIN next_button}
+ <span class=buttonborder><input class=button type=reset value=" >>> " {$nextbutton_attrs} ></span>
+{END next_button}
+</div>
+
+
+</div>
+<b class="xbottom"><b class="xb4b"></b><b class="xb3b"></b><b class="xb2b"></b><b class="xb1b"></b></b>
+
+</td></tr>
+</table>
+</div>
+{$footer}
+{END body}
+</body>
+</html>

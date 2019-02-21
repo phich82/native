@@ -1,0 +1,117 @@
+<html {$html_attrs}>
+<head><title>Project39 Blocking</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+<!--[if IE]>
+<link REL="stylesheet" href="include/styleIE.css" type="text/css">
+<![endif]-->
+<style>
+#center_block{$id} {width:500px;margin:0 auto;}
+#contents_block{$id} {text-align:center;}
+#header_block{$id} {white-space:nowrap;height:31px;padding:5px;text-align:center;}
+#footer_block{$id} {height:15px;}
+#fields_block{$id} {width:100%}
+#buttons_block{$id} {padding-bottom:5px;white-space:nowrap;text-align:center;}
+#required_block{$id} {text-align:left;padding:5px}
+#message_block{$id} {padding:5px 5px;text-align:center;}
+
+</style>
+</head>
+<body>
+{BEGIN body}
+{$header}
+<div>
+
+
+<TABLE align=center id="center_block{$id}" cellpadding=0 cellspacing=0><tr><td>
+
+<b class="xtop"><b class="xb1b"></b><b class="xb2b"></b><b class="xb3b"></b><b class="xb4b"></b></b>
+<div id="header_block{$id}" class="upeditmenu">
+Project39 Blocking, View record [
+Id: {$show_key1}
+]
+</div>
+<div class="main_table_border2" style="border: 1px solid #516C81;">
+<div class="main_table_border">
+<TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0 width="480">
+
+{BEGIN id_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Id</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$id_value}&nbsp;
+  </td></tr>
+{END id_fieldblock}
+{BEGIN tablename_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Tablename</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$tablename_value}&nbsp;
+  </td></tr>
+{END tablename_fieldblock}
+{BEGIN startdatetime_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Startdatetime</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$startdatetime_value}&nbsp;
+  </td></tr>
+{END startdatetime_fieldblock}
+{BEGIN confirmdatetime_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Confirmdatetime</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$confirmdatetime_value}&nbsp;
+  </td></tr>
+{END confirmdatetime_fieldblock}
+{BEGIN keys_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Keys</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$keys_value}&nbsp;
+  </td></tr>
+{END keys_fieldblock}
+{BEGIN sessionid_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Sessionid</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$sessionid_value}&nbsp;
+  </td></tr>
+{END sessionid_fieldblock}
+{BEGIN userid_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Userid</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$userid_value}&nbsp;
+  </td></tr>
+{END userid_fieldblock}
+{BEGIN action_fieldblock}
+<tr style="padding:3px">
+<td class=editshade_b width=150 style="padding-left:15px;">Action</td>
+<td width=250 class=editshade_lb style="padding-left:10px;">
+    {$action_value}&nbsp;
+  </td></tr>
+{END action_fieldblock}
+</table>
+</div>
+<div class="downedit" id="buttons_block{$id}">
+{BEGIN prev_button}
+ <span class=buttonborder><input class=button type=reset value=" <<< " {$prevbutton_attrs}></span>
+{END prev_button}
+{BEGIN back_button}
+<span class=buttonborder><input class=button type=button value="Back to list" {$backbutton_attrs}></span>
+{END back_button}
+{BEGIN next_button}
+ <span class=buttonborder><input class=button type=reset value=" >>> " {$nextbutton_attrs} ></span>
+{END next_button}
+</div>
+
+
+</div>
+<b class="xbottom"><b class="xb4b"></b><b class="xb3b"></b><b class="xb2b"></b><b class="xb1b"></b></b>
+
+</td></tr>
+</table>
+</div>
+{$footer}
+{END body}
+</body>
+</html>
